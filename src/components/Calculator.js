@@ -5,7 +5,29 @@ import CalculatorKeys from "./CalculatorKeys";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 
-export default function Calculator() {
+export default function Calculator({
+  currentValue,
+  changeValue,
+  operator,
+  allClear,
+  getResult,
+}) {
+  const handleButton = (e) => {
+    switch (e.target.name) {
+      case "+":
+      case "-":
+      case "*":
+      case "/":
+        return operator(e.target.name);
+      case "AC":
+        return allClear();
+      case "=":
+        return getResult();
+      default:
+        return changeValue(e.target.name);
+    }
+  };
+
   return (
     <Col xs={12} md={5}>
       <Card
@@ -14,9 +36,9 @@ export default function Calculator() {
         className="text-right"
         style={{ marginBottom: "1em" }}
       >
-        <CalculatorDisplay />
+        <CalculatorDisplay currentValue={currentValue} />
       </Card>
-      <CalculatorKeys />
+      <CalculatorKeys handleClick={handleButton} />
     </Col>
   );
 }
