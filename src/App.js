@@ -25,7 +25,9 @@ export default function App() {
 
   const getResult = () => {
     try {
-      const result = evaluate(currentValue);
+	  const result = evaluate(currentValue);
+	  if (isNaN(result))
+		throw new Error('Not a number')
       setValue(result);
     } catch (err) {
       setValue("Error");
@@ -35,7 +37,8 @@ export default function App() {
 
   const operator = (operation) => {
     if (currentValue === initialValue) {
-      switch (operation) {
+	  setOverwrite(false);
+	  switch (operation) {
         case "-":
           return setValue(operation);
         default:
@@ -45,6 +48,7 @@ export default function App() {
       ["*", "/", "+"].includes(currentValue[currentValue.length - 1]) &&
       currentValue !== "Error"
     ) {
+	  setOverwrite(false);
       switch (operation) {
         case "-":
           return setValue(currentValue + operation);
