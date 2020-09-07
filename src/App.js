@@ -19,15 +19,16 @@ export default function App() {
       setValue(button);
       setOverwrite(false);
     } else {
-      setValue(currentValue + button);
+      if (currentValue[currentValue.length - 1] === button && button === ".")
+        setValue(currentValue);
+      else setValue(currentValue + button);
     }
   };
 
   const getResult = () => {
     try {
-	  const result = evaluate(currentValue);
-	  if (isNaN(result))
-		throw new Error('Not a number')
+      const result = evaluate(currentValue);
+      if (isNaN(result)) throw new Error("Not a number");
       setValue(result);
     } catch (err) {
       setValue("Error");
@@ -37,8 +38,8 @@ export default function App() {
 
   const operator = (operation) => {
     if (currentValue === initialValue) {
-	  setOverwrite(false);
-	  switch (operation) {
+      setOverwrite(false);
+      switch (operation) {
         case "-":
           return setValue(operation);
         default:
@@ -48,7 +49,7 @@ export default function App() {
       ["*", "/", "+"].includes(currentValue[currentValue.length - 1]) &&
       currentValue !== "Error"
     ) {
-	  setOverwrite(false);
+      setOverwrite(false);
       switch (operation) {
         case "-":
           return setValue(currentValue + operation);
