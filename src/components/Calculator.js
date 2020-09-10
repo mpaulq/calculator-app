@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 
 export default function Calculator({ initialValue }) {
-  const [currentValue, setValue] = useState(initialValue);
+  const [currentValue, setValue] = useState(initialValue || '0');
   const [overwrite, setOverwrite] = useState(true);
 
   const changeValue = (button) => {
