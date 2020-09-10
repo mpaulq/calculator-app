@@ -6,7 +6,7 @@ This project is an aplication for a basic calculator created in React. A demo ca
 
 To install the application simply clone the repository, go to the project directory and then install the dependencies running `npm install`.
 
-Set the environment variables by copying the sample file and changing acording to your preference, by writing on the terminal `cp .env.sample .env`.
+Set the environment variables by copying the sample file writing on the terminal `cp .env.sample .env` and changing acording to your preference.
 
 ## Available Scripts
 
